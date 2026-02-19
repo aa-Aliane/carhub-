@@ -1,0 +1,83 @@
+---
+import styles from './Footer.module.css';
+---
+
+<footer class={styles.footer}>
+  <div class={styles.container}>
+    <div class={styles.grid}>
+      <div class={styles.brandCol}>
+        <div class={styles.logo}>Care<span>Hub</span></div>
+        <p class={styles.tagline}>
+          L'IA certifiée qui révolutionne votre accès aux soins. Disponible
+          24h/7j partout en France.
+        </p>
+        <div class={styles.appBadgeContainer}>
+          <span class={styles.downloadText}>Télécharger l'application</span>
+          <div class={styles.badges}>
+            <div class={styles.mockBadge}>App Store</div>
+            <div class={styles.mockBadge}>Google Play</div>
+          </div>
+        </div>
+      </div>
+
+      <div class={styles.linkCol}>
+        <h4>Navigation</h4>
+        <ul>
+          <li><a href="#hero">Accueil</a></li>
+          <li><a href="#features">Fonctionnalités</a></li>
+          <li><a href="#reviews">Témoignages</a></li>
+          <li><a href="#pricing">Tarifs</a></li>
+        </ul>
+      </div>
+
+      <div class={styles.linkCol}>
+        <h4>Support</h4>
+        <ul>
+          <li><a href="#">Centre d'aide</a></li>
+          <li><a href="#">Confidentialité (RGPD)</a></li>
+          <li><a href="#">Mentions Légales</a></li>
+          <li><a href="#">Contact</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class={styles.bottomBar}>
+      <p>&copy; 2026 CareHub. Tous droits réservés.</p>
+      <div class={styles.socials}>
+        <a
+          href="https://linkedin.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="LinkedIn"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/linkedin.svg"
+            alt=""
+          />
+        </a>
+        <a
+          href="https://twitter.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Twitter"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/x.svg"
+            alt=""
+          />
+        </a>
+        <a
+          href="https://instagram.com"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Instagram"
+        >
+          <img
+            src="https://cdn.jsdelivr.net/npm/simple-icons@v11/icons/instagram.svg"
+            alt=""
+          />
+        </a>
+      </div>
+    </div>
+  </div>
+</footer>
