@@ -1,0 +1,93 @@
+---
+import { Image } from 'astro:assets';
+import styles from './Hero.module.css';
+import picture1 from '../../assets/1.jpg';
+import picture2 from '../../assets/2.jpg';
+import picture4 from '../../assets/4.png';
+---
+
+<section class={styles.hero} id="hero">
+  <div class={styles.container}>
+    <div class={styles.content}>
+      <div class={styles.left}>
+        <div class={styles.massage}>
+          <span class={styles.badge}>Nouveau : Votre IA Santé certifiée</span>
+          <h1 class={styles.title}>
+            Votre santé immédiate, soins et pharmacie en ligne.
+          </h1>
+          <p class={styles.description}>
+            Accédez à une téléconsultation en moins de 15 min, évitez l'attente
+            et recevez vos médicaments à domicile 24h/7j.
+          </p>
+        </div>
+
+        <div class={styles.images}>
+          <Image
+            src={picture1}
+            alt="Interface de l'application CareHub"
+            format="webp"
+            width={300}
+            height={600}
+            quality="high"
+            class={styles.heroImg}
+          />
+
+          <div class={styles.infoSection}>
+            <div class={styles.stats}>
+              <div class={styles.statItem}>
+                <span class={styles.statValue}>11M</span>
+                <span class={styles.statLabel}>Français aidés</span>
+              </div>
+              <div class={styles.statItem}>
+                <span class={styles.statValue}>-1h</span>
+                <span class={styles.statLabel}>Temps gagné</span>
+              </div>
+            </div>
+            <Image
+              src={picture4}
+              alt="Interface de l'application CareHub"
+              format="webp"
+              width={300}
+              height={600}
+              quality="high"
+              class={styles.infoImg}
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class={styles.right}>
+        <Image
+          src={picture2}
+          alt="Interface de l'application CareHub"
+          format="webp"
+          width={300}
+          height={600}
+          quality="high"
+          class={styles.heroImg}
+        />
+
+        <div class={styles.contentBox}>
+          <p class={styles.subText}>
+            L'alliance unique entre l'expertise humaine et l'intelligence
+            artificielle : une technologie prédictive au service de votre
+            bien-être immédiat.
+          </p>
+
+          <ul class={styles.benefitsList}>
+            <li><span>✓</span> Diagnostic IA certifié en moins de 2 min</li>
+            <li><span>✓</span> Téléconsultation sans rendez-vous 24h/7</li>
+            <li><span>✓</span> Livraison de médicaments à domicile</li>
+            <li><span>✓</span> Suivi personnalisé de vos constantes</li>
+          </ul>
+        </div>
+
+        <div class={styles.btns}>
+          <a href="#download" class={styles['btn-main']}
+            >Commencer mon diagnostic</a
+          >
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

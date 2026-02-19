@@ -1,0 +1,48 @@
+---
+// This is your index.astro inside components/ui/navbar/
+import styles from './Navbar.module.css';
+---
+
+<nav class={styles.navbar}>
+  <div class={styles.logo}>
+    <span class={styles.plus}>+</span> CareHub
+  </div>
+  <div class={styles.links}>
+    <a href="#hero" data-nav-link>Home</a>
+    <a href="#about" data-nav-link>À propos</a>
+    <a href="#services" data-nav-link>Services</a>
+    <a href="#tarifs" data-nav-link>Tarifs</a>
+  </div>
+  <div class={styles['nav-cta']}>
+    <a href="#download" class={styles['btn-nav']}>Installer l'app</a>
+  </div>
+</nav>
+
+<script>
+  const navLinks = document.querySelectorAll<HTMLElement>('[data-nav-link]');
+  const sections = document.querySelectorAll<HTMLElement>('section[id]');
+
+  const observerOptions = {
+    root: null,
+    rootMargin: '-20% 0px -70% 0px',
+    threshold: 0
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        
+        navLinks.forEach((link) => {
+          if (link.getAttribute('href') === `#${id}`) {
+            link.setAttribute('data-active', 'true');
+          } else {
+            link.removeAttribute('data-active');
+          }
+        });
+      }
+    });
+  }, observerOptions);
+
+  sections.forEach((section) => observer.observe(section));
+</script>

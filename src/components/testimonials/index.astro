@@ -1,0 +1,72 @@
+---
+import { Image } from 'astro:assets';
+import styles from './Testimonials.module.css';
+import profile1 from '../../assets/profiles/1.jpg';
+import profile2 from '../../assets/profiles/2.jpg';
+import profile3 from '../../assets/profiles/3.jpg';
+
+const reviews = [
+  {
+    name: 'Juliana Silva',
+    role: 'Patiente Vérifiée',
+    text: "CareHub a radicalement changé ma façon de gérer mon asthme. Le diagnostic par IA est d'une précision impressionnante et m'évite des heures d'attente.",
+    date: '12 Fév. 2025',
+    avatar: profile1,
+  },
+  {
+    name: 'Rufus Stewart',
+    role: 'Utilisateur Premium',
+    text: "Le service de livraison est une révolution. J'ai reçu mes médicaments en moins de 45 minutes directement à ma porte. Je recommande vivement !",
+    date: '28 Janv. 2025',
+    avatar: profile2,
+  },
+  {
+    name: 'Daniel Gallego',
+    role: 'Patient Vérifié',
+    text: "J'ai pu parler à un médecin en 15 minutes. L'interface est propre et vraiment facile à utiliser par rapport aux autres applications médicales.",
+    date: '15 Janv. 2025',
+    avatar: profile3,
+  },
+];
+---
+
+<section class={styles.testimonials} id="reviews">
+  <div class={styles.container}>
+    <div class={styles.header}>
+      <h2 class={styles.title}>
+        Ce que dit notre <span class={styles.accent}>Communauté</span>
+      </h2>
+    </div>
+
+    <div class={styles.grid}>
+      {
+        reviews.map((item) => (
+          <div class={styles.card}>
+            <div class={styles.profile}>
+              <div class={styles.avatar}>
+                {/* Remplacement de <img> par <Image /> pour optimisation WebP automatique */}
+                <Image
+                  src={item.avatar}
+                  alt={`Photo de profil de ${item.name}`}
+                  width={140}
+                  height={140}
+                  format="webp"
+                />
+              </div>
+              <h3>{item.name}</h3>
+              <span class={styles.subtitle}>{item.role}</span>
+            </div>
+
+            <div class={styles.body}>
+              <p> {item.text} </p>
+            </div>
+
+            <div class={styles.footer}>
+              <span class={styles.date}>{item.date}</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

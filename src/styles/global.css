@@ -1,0 +1,134 @@
+/* --- CONFIGURATION SYSTÈME INTÉGRAL --- */
+:root {
+  /* 1. BRAND TOKENS (Valeurs fixes) */
+  --brand-green: hsl(153, 64%, 23%);
+  --brand-green-dark: hwb(162 4% 76%);
+  --brand-green-soft: hsl(153, 62%, 30%);
+  --brand-green-light: hsl(153, 50%, 55%);
+  --brand-green-lighter: hsl(153, 40%, 70%);
+  --brand-gold: hsl(51, 100%, 50%);
+  --color-white: hsl(0, 0%, 100%);
+  --color-grey-soft: hsl(0, 0%, 95%);
+  --color-grey-dark: hsl(0, 0%, 40%);
+  --color-blue-soft: hsl(144, 29%, 97%);
+  --color-dark-bg: hsl(213, 14%, 8%);
+  --color-dark-bg-subtle: hsl(153, 14%, 11%);
+  --color-dark-neutral: hsl(213, 14%, 13%);
+
+  /* 2. SEMANTIC TOKENS - MODE CLAIR (Défaut) */
+  --color-bg: var(--color-white);
+  --color-bg-nav: var(--color-white);
+  --color-bg-subtle: var(--color-blue-soft);
+  --color-primary: var(--brand-green);
+  --color-primary-soft: var(--brand-green-soft);
+  --color-primary-dark: var(--brand-green-dark);
+  --color-secondary: var(--brand-gold);
+  --color-neutral: var(--color-white);
+  --color-text: var(--color-primary-dark);
+  --color-text-muted: var(--color-grey-dark);
+  --color-border: var(--color-grey-soft);
+  --color-shadow: var(--color-grey-soft);
+
+  /* 3. TYPOGRAPHIE MOBILE FIRST */
+  --font-main: "Poppins", sans-serif;
+  --fs-h1: 2.25rem;
+  --fs-h2: 1.75rem;
+  --fs-h3: 1.25rem;
+  --fs-p: 1rem;
+  --fs-small: 0.875rem;
+
+  /* 4. STRUCTURE */
+  --section-padding: 4rem 1.25rem;
+  --nav-width: 92%;
+  --radius-lg: 12px;
+  --radius-md: 8px;
+  --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --container-width: 1400px;
+}
+
+/* --- MODE SOMBRE (Réassignation des Semantic Tokens) --- */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: var(--color-dark-bg);
+    --color-bg-nav: var(--color-dark-bg);
+    --color-bg-subtle: var(--color-dark-bg-subtle);
+    --color-primary: var(--brand-green-light);
+    --color-primary-soft: var(--brand-green-light);
+    --color-primary-dark: var(--brand-green-lighter);
+    --color-neutral: var(--color-dark-neutral);
+    --color-text: var(--color-white);
+    --color-text-muted: var(--color-grey-dark);
+    --color-border: var(--color-grey-soft);
+    --color-shadow: var(--color-dark-bg);
+  }
+}
+
+/* --- ADAPTATION DESKTOP --- */
+@media (min-width: 1024px) {
+  :root {
+    --fs-h1: 4rem;
+    --fs-h2: 3rem;
+    --fs-h3: 1.5rem;
+    --fs-p: 1.125rem;
+    --section-padding: 8rem 5%;
+    --nav-width: 80%;
+  }
+}
+
+/* --- RESET & BASE --- */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-main);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.5;
+  overflow-x: hidden;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-primary);
+  margin-bottom: 1.5rem;
+}
+
+h2 {
+  font-size: var(--fs-h2);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1.25rem;
+}
+
+p {
+  font-size: var(--fs-p);
+  color: var(--color-text-muted);
+  max-width: 65ch;
+}
+
+section {
+  padding: var(--section-padding);
+}
+
+section[id] {
+  scroll-margin-top: 100px;
+}
+
+.container {
+  width: 100%;
+  max-width: var(--container-width);
+  margin: 0 auto;
+}

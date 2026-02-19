@@ -1,0 +1,97 @@
+.about {
+  /* Utilisation de la couleur Primary pour briser le contraste */
+  background-color: var(--color-primary);
+  padding: var(--section-padding);
+  color: var(--color-white); /* On force le texte en blanc ici */
+
+  .container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 4rem;
+    align-items: center;
+
+    @media (min-width: 1024px) {
+      grid-template-columns: 1.5fr 1.2fr;
+    }
+  }
+
+  /* --- IMAGE À GAUCHE --- */
+  .left {
+    .aboutImg {
+      width: 100%;
+      height: 28rem;
+      object-fit: cover;
+      border-radius: var(--radius-lg);
+    }
+    @media (min-width: 1024px) {
+      height: 100%;
+      .aboutImg {
+        height: 100%;
+        object-fit: cover;
+        border-radius: var(--radius-lg);
+      }
+    }
+  }
+
+  /* --- CONTENU À DROITE --- */
+  .right {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .subtitle {
+      font-size: var(--fs-small);
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--color-secondary); /* Or sur fond Vert */
+    }
+
+    .title {
+      font-size: var(--fs-h1);
+      color: var(--color-white); /* Force le blanc sur fond sombre */
+      line-height: 1.1;
+
+      .gold {
+        color: var(--color-secondary);
+      }
+    }
+
+    .description {
+      font-size: var(--fs-p);
+      color: rgba(
+        255,
+        255,
+        255,
+        0.8
+      ); /* Blanc translucide pour la hiérarchie */
+      max-width: 55ch;
+    }
+  }
+
+  /* --- BOUTON --- */
+  .actions {
+    margin-top: 1rem;
+
+    .btn-secondary {
+      display: inline-block;
+      background-color: var(--color-secondary);
+      color: var(--brand-green); /* Texte vert sur bouton or */
+      padding: 1.1rem 2.5rem;
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      font-weight: 700;
+      transition: var(--transition);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        transform: translateY(-3px);
+        background-color: var(--color-white);
+        color: var(--color-primary);
+      }
+    }
+  }
+}
