@@ -1,0 +1,96 @@
+---
+import styles from './Pricing.module.css';
+
+const plans = [
+  {
+    name: 'Essentiel',
+    price: '0',
+    description: 'Idéal pour découvrir les services de diagnostic.',
+    features: [
+      'Diagnostic IA illimité',
+      'Historique (7 jours)',
+      'Accès médecins (Tarif standard)',
+      'Ordonnances digitales',
+    ],
+    buttonText: 'Commencer',
+    highlight: false,
+    tag: '',
+  },
+  {
+    name: 'Premium',
+    price: '9.99',
+    description: 'Le choix favori pour une tranquillité totale.',
+    features: [
+      'Tout le plan Essentiel',
+      'Téléconsultations prioritaires',
+      'Livraison offerte (3/mois)',
+      'Support client 24h/7j',
+    ],
+    buttonText: 'Choisir Premium',
+    highlight: true,
+    tag: 'Populaire',
+  },
+  {
+    name: 'Famille',
+    price: '19.99',
+    description: 'Protection complète pour 4 membres du foyer.',
+    features: [
+      'Tout le plan Premium',
+      'Jusqu’à 4 profils distincts',
+      'Livraison offerte illimitée',
+      'Suivi pédiatrique inclus',
+    ],
+    buttonText: 'Protéger ma famille',
+    highlight: false,
+    tag: 'Meilleure Valeur',
+  },
+];
+---
+
+<section class={styles.pricing} id="pricing">
+  <div class={styles.container}>
+    <div class={styles.header}>
+      <h2 class={styles.title}>
+        Des tarifs <span class={styles.accent}>clairs</span>
+      </h2>
+      <p class={styles.subtitle}>
+        Prenez soin de vous avec l'offre qui vous ressemble.
+      </p>
+    </div>
+
+    <div class={styles.grid}>
+      {
+        plans.map((plan) => (
+          <div
+            class={`${styles.card} ${plan.highlight ? styles.highlighted : ''}`}
+          >
+            {plan.tag && <span class={styles.badge}>{plan.tag}</span>}
+
+            <div class={styles.cardHeader}>
+              <h3>{plan.name}</h3>
+              <div class={styles.price}>
+                <span class={styles.amount}>{plan.price}€</span>
+                <span class={styles.period}>/mois</span>
+              </div>
+              <p class={styles.cardDesc}>{plan.description}</p>
+            </div>
+
+            <ul class={styles.featureList}>
+              {plan.features.map((feature) => (
+                <li>
+                  <span class={styles.check}>✓</span> {feature}
+                </li>
+              ))}
+            </ul>
+
+            <button
+              class={plan.highlight ? styles.btnPrimary : styles.btnOutline}
+            >
+              {plan.buttonText}
+            </button>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

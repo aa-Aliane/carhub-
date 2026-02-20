@@ -1,0 +1,197 @@
+/* --- SECTION --- */
+.pricing {
+  background-color: var(--color-bg-subtle);
+  padding: var(--section-padding);
+  transition: var(--transition);
+}
+
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+}
+
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.accent {
+  color: var(--brand-green);
+}
+
+.subtitle {
+  margin: 1rem auto 0;
+  color: var(--color-text-muted);
+}
+
+/* --- GRID OPTIMISÉE POUR 13" --- */
+.grid {
+  display: grid;
+  /* Réduction du seuil minimal à 250px pour forcer l'alignement à 3 sur laptop */
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.5rem;
+  justify-items: center;
+  align-items: stretch;
+}
+
+/* --- CARD STYLE --- */
+.card {
+  background-color: var(--color-bg);
+  padding: 2.5rem 1.5rem; /* Padding réduit pour gagner de la place */
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border);
+  width: 100%;
+  max-width: 380px;
+  position: relative;
+  transition: var(--transition);
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px var(--color-shadow);
+}
+
+/* --- MISE EN AVANT (HIGHLIGH) --- */
+.highlighted {
+  border: 2px solid var(--brand-green);
+  z-index: 2;
+}
+
+@media (min-width: 1024px) {
+  .highlighted {
+    transform: scale(1.05);
+  }
+  .highlighted:hover {
+    transform: scale(1.05) translateY(-8px);
+  }
+}
+
+/* --- BADGE --- */
+.badge {
+  position: absolute;
+  top: 1.25rem;
+  right: 1.25rem;
+  background-color: var(--brand-gold);
+  color: var(--brand-green-dark);
+  padding: 0.3rem 0.8rem;
+  border-radius: var(--radius-md);
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+/* --- TYPOGRAPHIE INTERNE --- */
+.cardHeader h3 {
+  font-size: var(--fs-h3);
+  margin-bottom: 1rem;
+  color: var(--color-text);
+}
+
+.amount {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--brand-green);
+}
+
+.period {
+  color: var(--color-text-muted);
+  font-size: var(--fs-small);
+}
+
+.cardDesc {
+  font-size: 0.95rem;
+  margin-top: 0.5rem;
+  color: var(--color-text-muted);
+}
+
+/* --- LISTE DES FONCTIONNALITÉS --- */
+.featureList {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  flex-grow: 1;
+}
+
+.featureList li {
+  margin-bottom: 0.8rem;
+  font-size: 0.95rem;
+  color: var(--color-text-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.check {
+  color: var(--brand-green);
+  font-weight: bold;
+}
+
+/* --- BOUTONS --- */
+.btnPrimary,
+.btnOutline {
+  width: 100%;
+  padding: 1rem;
+  border-radius: var(--radius-md);
+  font-family: var(--font-main);
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 1rem;
+}
+
+.btnPrimary {
+  background-color: var(--brand-green);
+  color: var(--color-white);
+  border: none;
+}
+
+.btnPrimary:hover {
+  background-color: var(--brand-green-soft);
+}
+
+.btnOutline {
+  background-color: transparent;
+  color: var(--brand-green);
+  border: 2px solid var(--brand-green);
+}
+
+.btnOutline:hover {
+  background-color: var(--brand-green);
+  color: var(--color-white);
+}
+
+/* --- MEDIA QUERIES SPÉCIFIQUES 13" / LAPTOP --- */
+@media (min-width: 1024px) and (max-width: 1366px) {
+  .grid {
+    gap: 1rem;
+  }
+
+  .card {
+    padding: 2rem 1.25rem;
+  }
+
+  .amount {
+    font-size: 2.2rem;
+  }
+
+  .highlighted {
+    transform: scale(1.02); /* Zoom réduit pour ne pas chevaucher */
+  }
+}
+
+/* --- MOBILE --- */
+@media (max-width: 768px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    max-width: 100%;
+  }
+
+  .highlighted {
+    transform: scale(1);
+  }
+}
