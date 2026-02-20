@@ -1,90 +1,219 @@
 ---
-import styles from './Pricing.module.css';
+import pricingStyles from './Pricing.module.css';
 
-const plans = [
+const patientPlans = [
   {
-    name: 'Essentiel',
+    name: 'Offre Standard',
     price: '0',
-    description: 'Idéal pour découvrir les services de diagnostic.',
+    description: 'Accès aux fonctionnalités essentielles.',
     features: [
-      'Diagnostic IA illimité',
-      'Historique (7 jours)',
-      'Accès médecins (Tarif standard)',
-      'Ordonnances digitales',
+      'Triage IA et orientation',
+      'Accès pharmacies partenaires',
+      'Commande médicaments',
+      'Historique basique',
+      'Livraison (Frais standards)',
     ],
-    buttonText: 'Commencer',
+    buttonText: 'Utiliser Standard',
     highlight: false,
     tag: '',
   },
   {
     name: 'Premium',
     price: '4.99',
-    description: 'Le choix favori pour une tranquillité totale.',
+    description: 'Pour une prise en charge plus rapide au quotidien.',
     features: [
-      'Tout le plan Essentiel',
-      'Téléconsultations prioritaires',
-      'Livraison offerte (3/mois)',
-      'Support client 24h/7j',
+      'Livraison GRATUITE',
+      'Livraison prioritaire',
+      'Accès rapide téléconsultation',
+      'Suivi des ordonnances',
+      'Réductions parapharmacie',
     ],
-    buttonText: 'Choisir Premium',
+    buttonText: 'Passer à Premium',
     highlight: true,
-    tag: 'Populaire',
+    tag: 'Recommandé',
   },
   {
-    name: 'Famille',
-    price: '19.99',
-    description: 'Protection complète pour 4 membres du foyer.',
+    name: 'Abonnement Famille',
+    price: '10.90',
+    description: 'Protection complète pour tout le foyer.',
     features: [
       'Tout le plan Premium',
       'Jusqu’à 4 profils distincts',
-      'Livraison offerte illimitée',
-      'Suivi pédiatrique inclus',
+      'Livraison gratuite illimitée',
+      'Dossiers médicaux séparés',
+      'Partage ordonnances',
     ],
     buttonText: 'Protéger ma famille',
     highlight: false,
     tag: 'Meilleure Valeur',
   },
 ];
+
+const proPlans = [
+  {
+    name: 'Étudiant en Médecine',
+    price: '0',
+    description: 'Accès pédagogique et participation au réseau de soins.',
+    features: [
+      'Accès aux outils de triage IA',
+      "Validation d'orientations médicales",
+      'Historique de cas cliniques',
+      'Ressources documentaires',
+    ],
+    buttonText: "M'inscrire gratuitement",
+    highlight: false,
+  },
+  {
+    name: 'Cabinet Digital',
+    price: '29.99',
+    description: 'Pour les praticiens seuls souhaitant digitaliser leur flux.',
+    features: [
+      'Gestion patientèle IA',
+      'Téléconsultation HD',
+      'Ordonnances certifiées',
+      'Support dédié',
+    ],
+    buttonText: 'Essayer gratuitement',
+    highlight: false,
+  },
+  {
+    name: 'Expert Spécialiste',
+    price: '89.99',
+    description:
+      'Outils de précision pour les médecins spécialistes et experts.',
+    features: [
+      'IA adaptée à votre spécialité', // Pour montrer que l'IA comprend le jargon spécifique
+      'Gestion de dossiers complexes',
+      'Télé-expertise & Avis confrères', // Très important pour les spécialistes
+      'Secrétariat IA haute performance',
+      'Statistiques cliniques avancées',
+    ],
+    buttonText: 'Optimiser ma pratique',
+    highlight: true,
+  },
+  {
+    name: 'Hôpital Connect',
+    price: '199',
+    description: 'Infrastructure dédiée pour les grands établissements.',
+    features: [
+      'Utilisateurs illimités',
+      'Serveur HDS dédié',
+      'Formation sur site',
+      'API complète',
+    ],
+    buttonText: 'Sur devis',
+    highlight: false,
+  },
+  {
+    name: 'Pharmacie Partner',
+    price: '99.99',
+    description: 'Boostez la visibilité de votre officine.',
+    features: [
+      'Référencement prioritaire',
+      'Gestion stocks IA',
+      'Tableau de bord livreur',
+      'Support 24h/7j',
+    ],
+    buttonText: 'Rejoindre le réseau',
+    highlight: false,
+  },
+];
 ---
 
-<section class={styles.pricing} id="pricing">
-  <div class={styles.container}>
-    <div class={styles.header}>
-      <h2 class={styles.title}>
-        Des tarifs <span class={styles.accent}>clairs</span>
+<section class={pricingStyles.pricing} id="pricing">
+  <div class={pricingStyles.container}>
+    <div class={pricingStyles.header}>
+      <h2 class={pricingStyles.title}>
+        Nos <span class={pricingStyles.accent}>Tarifs</span>
       </h2>
-      <p class={styles.subtitle}>
-        Prenez soin de vous avec l'offre qui vous ressemble.
+      <p class={pricingStyles.subtitle}>
+        Livraison gratuite, accès prioritaire et services exclusifs HUBACARE.
       </p>
+
+      <div class={pricingStyles.toggleWrapper}>
+        <button
+          id="toggle-patients"
+          class={pricingStyles.toggleBtn}
+          data-active="true"
+        >
+          Pour vous
+        </button>
+        <button
+          id="toggle-pros"
+          class={pricingStyles.toggleBtn}
+          data-active="false"
+        >
+          Professionnels
+        </button>
+      </div>
     </div>
 
-    <div class={styles.grid}>
+    <div
+      id="grid-patients"
+      class={`${pricingStyles.grid} ${pricingStyles.grid3}`}
+    >
       {
-        plans.map((plan) => (
+        patientPlans.map((plan) => (
           <div
-            class={`${styles.card} ${plan.highlight ? styles.highlighted : ''}`}
+            class={`${pricingStyles.card} ${plan.highlight ? pricingStyles.featured : ''}`}
           >
-            {plan.tag && <span class={styles.badge}>{plan.tag}</span>}
-
-            <div class={styles.cardHeader}>
-              <h3>{plan.name}</h3>
-              <div class={styles.price}>
-                <span class={styles.amount}>{plan.price}€</span>
-                <span class={styles.period}>/mois</span>
-              </div>
-              <p class={styles.cardDesc}>{plan.description}</p>
+            {plan.tag && <span class={pricingStyles.planTag}>{plan.tag}</span>}
+            <h3 class={pricingStyles.planName}>{plan.name}</h3>
+            <div class={pricingStyles.price}>
+              <strong class={pricingStyles.amount}>{plan.price}€</strong>
+              <span class={pricingStyles.period}>/ mois</span>
             </div>
-
-            <ul class={styles.featureList}>
+            <p class={pricingStyles.planDesc}>{plan.description}</p>
+            <ul class={pricingStyles.featureList}>
               {plan.features.map((feature) => (
                 <li>
-                  <span class={styles.check}>✓</span> {feature}
+                  <span class={pricingStyles.check}>✓</span> {feature}
                 </li>
               ))}
             </ul>
-
             <button
-              class={plan.highlight ? styles.btnPrimary : styles.btnOutline}
+              class={
+                plan.highlight
+                  ? pricingStyles.btnPrimary
+                  : pricingStyles.btnOutline
+              }
+            >
+              {plan.buttonText}
+            </button>
+          </div>
+        ))
+      }
+    </div>
+
+    <div
+      id="grid-pros"
+      class={`${pricingStyles.grid} ${pricingStyles.grid4}`}
+      style="display: none;"
+    >
+      {
+        proPlans.map((plan) => (
+          <div
+            class={`${pricingStyles.card} ${plan.highlight ? pricingStyles.featured : ''}`}
+          >
+            <h3 class={pricingStyles.planName}>{plan.name}</h3>
+            <div class={pricingStyles.price}>
+              <strong class={pricingStyles.amount}>{plan.price}€</strong>
+              <span class={pricingStyles.period}>/ mois</span>
+            </div>
+            <p class={pricingStyles.planDesc}>{plan.description}</p>
+            <ul class={pricingStyles.featureList}>
+              {plan.features.map((feature) => (
+                <li>
+                  <span class={pricingStyles.check}>✓</span> {feature}
+                </li>
+              ))}
+            </ul>
+            <button
+              class={
+                plan.highlight
+                  ? pricingStyles.btnPrimary
+                  : pricingStyles.btnOutline
+              }
             >
               {plan.buttonText}
             </button>
@@ -94,3 +223,26 @@ const plans = [
     </div>
   </div>
 </section>
+
+<script>
+  function setupPricing() {
+    const btnPatients = document.getElementById('toggle-patients');
+    const btnPros = document.getElementById('toggle-pros');
+    const gridPatients = document.getElementById('grid-patients');
+    const gridPros = document.getElementById('grid-pros');
+
+    if (!btnPatients || !btnPros || !gridPatients || !gridPros) return;
+
+    const update = (isPatients) => {
+      btnPatients.setAttribute('data-active', isPatients);
+      btnPros.setAttribute('data-active', !isPatients);
+      gridPatients.style.display = isPatients ? 'grid' : 'none';
+      gridPros.style.display = isPatients ? 'none' : 'grid';
+    };
+
+    btnPatients.onclick = () => update(true);
+    btnPros.onclick = () => update(false);
+  }
+  setupPricing();
+  document.addEventListener('astro:after-swap', setupPricing);
+</script>

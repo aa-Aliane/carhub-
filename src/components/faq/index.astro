@@ -1,0 +1,91 @@
+---
+import styles from './FAQ.module.css';
+
+const faqs = [
+  {
+    question: "L’IA remplace-t-elle un médecin ?",
+    answer: "Non. L’IA HUBACARE propose une <strong>première orientation</strong> basée sur vos symptômes. Si des signes nécessitent un avis médical, vous êtes automatiquement redirigé vers un <strong>médecin généraliste</strong> ou un <strong>spécialiste</strong>."
+  },
+  {
+    question: "Comment fonctionne le triage intelligent ?",
+    answer: "Vous décrivez vos symptômes. L’IA analyse vos réponses en quelques secondes et vous indique la solution la plus adaptée : accès direct à la pharmacie, téléconsultation, rendez-vous en présentiel ou urgence si nécessaire."
+  },
+  {
+    question: "L’IA suffit-elle toujours ? (cas simples)",
+    answer: "Pour les cas bénins (rhume, toux légère, migraine légère, irritation…), l’IA suffit pour vous proposer des traitements en vente libre.<br><br>✔️ Si l’IA a un doute, un <strong>médecin étudiant</strong> vérifie l’orientation.<br>✔️ Il ne prescrit pas d’ordonnance.<br>✔️ Il confirme simplement que l’orientation est sûre."
+  },
+  {
+    question: "Puis-je obtenir des médicaments sans ordonnance ?",
+    answer: "Oui, si vos symptômes sont compatibles avec des médicaments disponibles <strong>sans ordonnance</strong> (migraine légère, rhume, irritations…). HUBACARE propose ces traitements directement."
+  },
+  {
+    question: "Que se passe-t-il si j’ai besoin d’un médecin ?",
+    answer: "HUBACARE vous redirige vers un <strong>médecin généraliste</strong> ou un <strong>spécialiste</strong>, en fonction de vos symptômes. Vous pouvez choisir :<br><br>• téléconsultation,<br>• ou rendez-vous en présentiel.<br><br>Après consultation, l’ordonnance est automatiquement envoyée à la pharmacie partenaire la plus proche."
+  },
+  {
+    question: "HUBACARE remplace-t-il les urgences ?",
+    answer: "Non. En cas de : douleur intense, malaise, saignement important, difficulté à respirer, traumatisme grave ou tout signe vital inquiétant…<br><br>➡️ Appelez immédiatement le <strong>15</strong> ou le <strong>112</strong>."
+  },
+  {
+    question: "Que se passe-t-il si ma pharmacie est fermée ?",
+    answer: "Si la pharmacie sélectionnée est fermée, indisponible ou surchargée, HUBACARE bascule automatiquement vers la <strong>pharmacie ouverte la plus proche</strong> selon votre localisation. Tout est automatisé."
+  },
+  {
+    question: "Comment fonctionne la livraison ?",
+    answer: "Après validation de votre commande :<br><br>✔️ la pharmacie la plus proche prépare vos médicaments,<br>✔️ un livreur vous les apporte en quelques minutes (zones couvertes),<br>✔️ la livraison est <strong>gratuite pour les abonnés</strong>."
+  },
+  {
+    question: "Puis-je suivre ma commande ?",
+    answer: "Oui. Vous recevez :<br><br>• une confirmation de prise en charge,<br>• des mises à jour en temps réel,<br>• et un suivi du livreur si la livraison est disponible dans votre zone."
+  },
+  {
+    question: "HUBACARE fonctionne-t-il partout ?",
+    answer: "HUBACARE dépend de vos pharmacies partenaires locales. L’application détecte automatiquement :<br><br>• votre zone,<br>• les pharmacies ouvertes,<br>• et la disponibilité de la livraison express."
+  },
+  {
+    question: "Comment envoyer une ordonnance ?",
+    answer: "Vous pouvez téléverser votre ordonnance, prendre une photo ou recevoir une ordonnance digitale après téléconsultation. Elle est automatiquement envoyée à la pharmacie partenaire."
+  },
+  {
+    question: "Dans quels cas l’IA suffit-elle ?",
+    answer: "L’IA prend efficacement en charge :<br><br>• rhume, toux,<br>• maux de tête légers,<br>• douleurs musculaires simples,<br>• irritations, allergies légères,<br>• troubles digestifs légers,<br>• petites infections ORL."
+  },
+  {
+    question: "Mes données médicales sont-elles protégées ?",
+    answer: "Oui. Données chiffrées, serveurs sécurisés, RGPD, accès limité aux professionnels concernés. Vos données ne sont <strong>jamais revendues</strong>."
+  },
+  {
+    question: "Comment créer un compte HUBACARE ?",
+    answer: "La création de compte se fait en quelques secondes :<br><br>1. Entrer votre numéro de téléphone ou e-mail,<br>2. Valider le code de vérification,<br>3. Compléter vos informations médicales optionnelles (allergies, traitements).<br><br>Votre compte est prêt !"
+  },
+  {
+    question: "Comment fonctionne l’abonnement ?",
+    answer: "Un abonnement permet de :<br><br>✔️ bénéficier de la livraison gratuite,<br>✔️ accéder à un triage IA illimité,<br>✔️ accélérer le transfert vers la pharmacie.<br>"
+  },
+  {
+    question: "L’abonnement famille existe-t-elle ?",
+    answer: "Oui. L’<strong>Abonnement Famille (10,90 €/mois)</strong> permet :<br><br>• livraison gratuite pour tous les membres,<br>• triage IA illimité,<br>• dossiers médicaux séparés,<br>• partage simplifié des ordonnances."
+  }
+];
+---
+
+<section class={styles.faq} id="faq">
+  <div class={styles.container}>
+    <div class={styles.header}>
+      <h2 class={styles.title}>FAQ</h2>
+      <p class={styles.subtitle}>Toutes les réponses à vos questions avant de commencer.</p>
+    </div>
+
+    <div class={styles.faqList}>
+      {faqs.map((faq) => (
+        <details class={styles.faqItem}>
+          <summary class={styles.summary}>
+            {faq.question}
+            <span class={styles.icon}>+</span>
+          </summary>
+          <p class={styles.answer} set:html={faq.answer}></p>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
