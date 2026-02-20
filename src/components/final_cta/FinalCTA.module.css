@@ -1,0 +1,70 @@
+.finalCta {
+  background-color: var(
+    --color-primary-dark
+  ); /* Utilise ton vert profond du design system */
+  padding: 6rem 1.25rem;
+  text-align: center;
+  transition: var(--transition);
+}
+
+.container {
+  max-width: 800px; /* On réduit la largeur pour densifier le message */
+  margin: 0 auto;
+}
+
+.title {
+  color: var(--color-white);
+  font-size: var(--fs-h2);
+  margin-bottom: 1.5rem;
+  line-height: 1.2;
+}
+
+.accent {
+  color: var(--brand-gold); /* Utilise ton Or pour l'accentuation */
+}
+
+.description {
+  color: var(--color-grey-soft);
+  font-size: var(--fs-p);
+  margin-bottom: 3rem;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.btnMain {
+  background-color: var(--brand-gold);
+  color: var(--brand-green-dark);
+  padding: 1.25rem 2.5rem;
+  border-radius: var(--radius-md);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.1rem;
+  transition: var(--transition);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btnMain:hover {
+  transform: translateY(-3px);
+  background-color: var(--color-white);
+  color: var(--brand-green);
+}
+
+.subtext {
+  color: var(--brand-green-lighter);
+  font-size: var(--fs-small);
+  opacity: 0.8;
+}
+
+@media (min-width: 1024px) {
+  .finalCta {
+    padding: 10rem 5%;
+  }
+}
