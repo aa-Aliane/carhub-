@@ -1,8 +1,8 @@
 .about {
   /* Utilisation de la couleur Primary pour briser le contraste */
-  background-color: var(--color-primary);
+  background-color: var(--color-primary-bg);
   padding: var(--section-padding);
-  color: var(--color-white); /* On force le texte en blanc ici */
+  color: var(--color-white); /* On garde le texte en blanc ici car le fond est Primary */
 
   .container {
     width: 100%;
@@ -66,20 +66,20 @@
         255,
         255,
         255,
-        0.8
-      ); /* Blanc translucide pour la hiérarchie */
+        0.9
+      ); /* Un peu plus opaque pour le dark mode */
       max-width: 55ch;
     }
   }
 
-  /* --- BOUTON --- */
+  /* --- BOUTONS --- */
   .actions {
     margin-top: 1rem;
 
     .btn-secondary {
       display: inline-block;
       background-color: var(--color-secondary);
-      color: var(--brand-green); /* Texte vert sur bouton or */
+      color: var(--brand-green-dark); /* Texte sombre sur bouton or */
       padding: 1.1rem 2.5rem;
       border-radius: var(--radius-md);
       text-decoration: none;

@@ -16,7 +16,7 @@
 }
 
 .accent {
-  color: var(--brand-green);
+  color: var(--color-primary);
 }
 
 .subtitle {
@@ -55,7 +55,7 @@
 
 /* --- MISE EN AVANT (HIGHLIGH) --- */
 .highlighted {
-  border: 2px solid var(--brand-green);
+  border: 2px solid var(--color-primary);
   z-index: 2;
 }
 
@@ -73,7 +73,7 @@
   position: absolute;
   top: 1.25rem;
   right: 1.25rem;
-  background-color: var(--brand-gold);
+  background-color: var(--color-secondary);
   color: var(--brand-green-dark);
   padding: 0.3rem 0.8rem;
   border-radius: var(--radius-md);
@@ -92,7 +92,7 @@
 .amount {
   font-size: 2.5rem;
   font-weight: 800;
-  color: var(--brand-green);
+  color: var(--color-primary);
 }
 
 .period {
@@ -124,7 +124,7 @@
 }
 
 .check {
-  color: var(--brand-green);
+  color: var(--color-primary);
   font-weight: bold;
 }
 
@@ -142,23 +142,23 @@
 }
 
 .btnPrimary {
-  background-color: var(--brand-green);
+  background-color: var(--color-primary-bg);
   color: var(--color-white);
   border: none;
 }
 
 .btnPrimary:hover {
-  background-color: var(--brand-green-soft);
+  background-color: var(--color-primary-soft);
 }
 
 .btnOutline {
   background-color: transparent;
-  color: var(--brand-green);
-  border: 2px solid var(--brand-green);
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
 }
 
 .btnOutline:hover {
-  background-color: var(--brand-green);
+  background-color: var(--color-primary);
   color: var(--color-white);
 }
 

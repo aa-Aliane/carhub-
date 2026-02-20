@@ -14,7 +14,7 @@
 }
 
 .badge {
-  color: var(--brand-green);
+  color: var(--color-primary);
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 2px;
@@ -23,8 +23,9 @@
 .title {
   font-size: var(--fs-h2);
   margin-top: 1rem;
+  color: var(--color-text);
   .accent {
-    color: var(--brand-green);
+    color: var(--color-primary);
   }
 }
 
@@ -78,7 +79,7 @@
   h3 {
     font-size: 1.5rem;
     font-weight: 700;
-    color: var(--brand-green);
+    color: var(--color-text);
   }
 
   p {
@@ -106,7 +107,7 @@
   left: 50%;
   width: 320px;
   height: 350px;
-  background: var(--brand-green);
+  background: var(--color-primary-bg);
 
   z-index: -1;
 

@@ -22,6 +22,7 @@
   --color-primary: var(--brand-green);
   --color-primary-soft: var(--brand-green-soft);
   --color-primary-dark: var(--brand-green-dark);
+  --color-primary-bg: var(--brand-green);
   --color-secondary: var(--brand-gold);
   --color-neutral: var(--color-white);
   --color-text: var(--color-primary-dark);
@@ -30,7 +31,7 @@
   --color-shadow: var(--color-grey-soft);
 
   /* 3. TYPOGRAPHIE MOBILE FIRST */
-  --font-main: "Poppins", sans-serif;
+  --font-main: 'Poppins', sans-serif;
   --fs-h1: 2.25rem;
   --fs-h2: 1.75rem;
   --fs-h3: 1.25rem;
@@ -46,21 +47,23 @@
   --container-width: 1400px;
 }
 
-/* --- MODE SOMBRE (Réassignation des Semantic Tokens) --- */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-bg: var(--color-dark-bg);
-    --color-bg-nav: var(--color-dark-bg);
-    --color-bg-subtle: var(--color-dark-bg-subtle);
-    --color-primary: var(--brand-green-light);
-    --color-primary-soft: var(--brand-green-light);
-    --color-primary-dark: var(--brand-green-lighter);
-    --color-neutral: var(--color-dark-neutral);
-    --color-text: var(--color-white);
-    --color-text-muted: var(--color-grey-dark);
-    --color-border: var(--color-grey-soft);
-    --color-shadow: var(--color-dark-bg);
-  }
+/* Cette partie permet au bouton de forcer le mode sombre même si l'ordi est en mode clair */
+.dark {
+  /* On restaure le vert vibrant pour le texte dans le dark mode */
+  --brand-green-light: hsl(153, 50%, 55%); 
+
+  --color-bg: hsl(213, 14%, 10%);
+  --color-bg-nav: hsla(213, 14%, 12%, 0.8);
+  --color-bg-subtle: hsl(213, 14%, 14%);
+  --color-primary: var(--brand-green-light);
+  --color-primary-soft: hsl(153, 50%, 45%);
+  --color-primary-dark: var(--brand-green-light);
+  --color-primary-bg: hsl(153, 62%, 28%); /* Nuance plus sombre pour les fonds supportant du texte blanc */
+  --color-neutral: hsl(213, 14%, 16%);
+  --color-text: hsl(0, 0%, 98%);
+  --color-text-muted: hsl(213, 10%, 70%);
+  --color-border: hsl(213, 14%, 20%);
+  --color-shadow: rgba(0, 0, 0, 0.4);
 }
 
 /* --- ADAPTATION DESKTOP --- */

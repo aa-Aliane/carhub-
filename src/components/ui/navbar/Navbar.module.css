@@ -92,7 +92,7 @@
 }
 
 .btn-nav {
-  background: var(--color-primary);
+  background: var(--color-primary-bg);
   color: #ffffff; /* On force le blanc pour le contraste sur vert */
   padding: 0.75rem 1.6rem;
   border-radius: var(--radius-md);
@@ -118,4 +118,47 @@
   .links {
     display: none; /* Ton burger menu prendra le relais ici */
   }
+}
+
+.nav-right {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.themeToggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text);
+  transition: background 0.3s ease;
+}
+
+.themeToggle:hover {
+  background: var(--color-bg-subtle);
+}
+
+/* Cache l'icône opposée selon le mode */
+.sun {
+  display: block;
+}
+.moon {
+  display: none;
+}
+
+:global(.dark) .sun {
+  display: none;
+}
+:global(.dark) .moon {
+  display: block;
+}
+
+/* Ajustement pour le CTA */
+.nav-cta {
+  display: flex;
 }
