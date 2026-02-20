@@ -2,7 +2,9 @@
   /* Utilisation de la couleur Primary pour briser le contraste */
   background-color: var(--color-primary-bg);
   padding: var(--section-padding);
-  color: var(--color-white); /* On garde le texte en blanc ici car le fond est Primary */
+  color: var(
+    --color-white
+  ); /* On garde le texte en blanc ici car le fond est Primary */
 
   .container {
     width: 100%;
@@ -20,17 +22,28 @@
 
   /* --- IMAGE À GAUCHE --- */
   .left {
+    /* Ensure the container stretches to the grid cell height */
+    height: 100%;
+    max-height: 43rem;
+    display: flex;
+
     .aboutImg {
       width: 100%;
-      height: 18rem;
+      /* Changed from fixed heights to 100% to fill the container */
+      height: 100%;
+      min-height: 300px; /* Optional: prevents it from disappearing on very small content */
       object-fit: cover;
       border-radius: var(--radius-lg);
     }
+
+    /* Remove the fixed height media queries that were forcing 'rem' values */
     @media (min-width: 768px) {
       .aboutImg {
-        height: 28rem;
+        /* height: 28rem;  <-- Remove or comment this out */
+        height: 100%;
       }
     }
+
     @media (min-width: 1024px) {
       height: 100%;
       .aboutImg {
@@ -38,7 +51,6 @@
       }
     }
   }
-
   /* --- CONTENU À DROITE --- */
   .right {
     display: flex;
