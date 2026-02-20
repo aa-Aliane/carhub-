@@ -22,16 +22,19 @@
   .left {
     .aboutImg {
       width: 100%;
-      height: 28rem;
+      height: 18rem;
       object-fit: cover;
       border-radius: var(--radius-lg);
+    }
+    @media (min-width: 768px) {
+      .aboutImg {
+        height: 28rem;
+      }
     }
     @media (min-width: 1024px) {
       height: 100%;
       .aboutImg {
         height: 100%;
-        object-fit: cover;
-        border-radius: var(--radius-lg);
       }
     }
   }
@@ -41,6 +44,11 @@
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+    text-align: center;
+
+    @media (min-width: 1024px) {
+      text-align: left;
+    }
 
     .subtitle {
       font-size: var(--fs-small);
@@ -51,9 +59,13 @@
     }
 
     .title {
-      font-size: var(--fs-h1);
+      font-size: 1.8rem;
       color: var(--color-white); /* Force le blanc sur fond sombre */
       line-height: 1.1;
+
+      @media (min-width: 768px) {
+        font-size: var(--fs-h1);
+      }
 
       .gold {
         color: var(--color-secondary);
@@ -62,19 +74,24 @@
 
     .description {
       font-size: var(--fs-p);
-      color: rgba(
-        255,
-        255,
-        255,
-        0.9
-      ); /* Un peu plus opaque pour le dark mode */
+      color: rgba(255, 255, 255, 0.9);
       max-width: 55ch;
+      margin: 0 auto;
+      @media (min-width: 1024px) {
+        margin: 0;
+      }
     }
   }
 
   /* --- BOUTONS --- */
   .actions {
     margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+
+    @media (min-width: 1024px) {
+      justify-content: flex-start;
+    }
 
     .btn-secondary {
       display: inline-block;

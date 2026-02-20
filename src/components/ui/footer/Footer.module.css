@@ -30,6 +30,12 @@
   gap: 0.5rem;
 }
 
+.logoSvg {
+  max-width: 180px;
+  height: auto;
+  display: block;
+}
+
 .plus {
   color: var(--color-secondary);
 }
@@ -100,15 +106,22 @@
 /* --- DISCLAIMER --- */
 .disclaimer {
   margin-top: 3rem;
-  padding: 1rem 0;
+  padding: 1.25rem 2rem;
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg);
+  border: 1px solid rgba(255, 255, 255, 0.08);
   text-align: center;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.45);
-  line-height: 1.6;
-  font-weight: 300;
-  max-width: 800px;
+  max-width: 900px;
   margin-left: auto;
   margin-right: auto;
+}
+
+.disclaimer p {
+  font-size: 0.85rem;
+  color: rgba(255, 255, 255, 0.5);
+  line-height: 1.6;
+  font-weight: 400;
+  margin: 0;
 }
 
 /* --- BOTTOM BAR --- */

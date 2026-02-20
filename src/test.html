@@ -1,0 +1,1545 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>HUBACARE | Parcours de soins intelligent</title>
+    <meta
+      name="description"
+      content="Analyse des symptômes par IA, orientation médicale si nécessaire, pharmacie partenaire la plus proche, téléconsultation et livraison rapide des médicaments."
+    />
+
+    <style>
+      :root {
+        --primary: #095c4e;
+        --light: #cce8b7;
+        --dark: #0e224b;
+        --white: #ffffff;
+
+        --text: var(--dark);
+        --muted: rgba(14, 34, 75, 0.78);
+        --muted2: rgba(14, 34, 75, 0.62);
+
+        --border: rgba(14, 34, 75, 0.14);
+        --shadow: 0 16px 44px rgba(14, 34, 75, 0.12);
+        --radius: 18px;
+        --max: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family:
+          ui-sans-serif,
+          system-ui,
+          -apple-system,
+          Segoe UI,
+          Roboto,
+          Arial,
+          'Apple Color Emoji',
+          'Segoe UI Emoji';
+        color: var(--text);
+        background: var(--white);
+        line-height: 1.55;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      img {
+        max-width: 100%;
+        display: block;
+      }
+      .wrap {
+        max-width: var(--max);
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header */
+      .nav {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        background: var(--dark);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.14);
+      }
+      .nav-inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 14px 0;
+        gap: 14px;
+      }
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        font-weight: 900;
+        letter-spacing: 0.2px;
+        color: var(--white);
+        white-space: nowrap;
+      }
+      .logo {
+        width: 34px;
+        height: 34px;
+        border-radius: 10px;
+        background: var(--primary);
+        box-shadow: 0 10px 26px rgba(9, 92, 78, 0.28);
+        display: grid;
+        place-items: center;
+        font-weight: 900;
+      }
+      .nav-links {
+        display: flex;
+        gap: 18px;
+        color: rgba(255, 255, 255, 0.86);
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .nav-links a:hover {
+        color: var(--white);
+      }
+      @media (max-width: 980px) {
+        .nav-links {
+          display: none;
+        }
+      }
+
+      /* Buttons */
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 12px 16px;
+        border-radius: 14px;
+        font-weight: 900;
+        border: 2px solid transparent;
+        transition: 0.18s ease;
+        cursor: pointer;
+        user-select: none;
+        white-space: nowrap;
+      }
+      .btn:focus {
+        outline: 3px solid rgba(204, 232, 183, 0.9);
+        outline-offset: 2px;
+      }
+      .btn-primary {
+        background: var(--primary);
+        color: var(--white);
+        box-shadow: 0 16px 44px rgba(9, 92, 78, 0.18);
+      }
+      .btn-primary:hover {
+        background: var(--dark);
+      }
+      .btn-outline {
+        background: var(--white);
+        border-color: rgba(9, 92, 78, 0.45);
+        color: var(--primary);
+      }
+      .btn-outline:hover {
+        border-color: var(--dark);
+        color: var(--dark);
+        transform: translateY(-1px);
+      }
+
+      /* Hero */
+      .hero {
+        background: linear-gradient(
+          180deg,
+          rgba(204, 232, 183, 0.28),
+          rgba(255, 255, 255, 1)
+        );
+        padding: 52px 0 26px;
+      }
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.12fr 0.88fr;
+        gap: 26px;
+        align-items: center;
+      }
+      @media (max-width: 980px) {
+        .hero-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 10px;
+        padding: 8px 12px;
+        border-radius: 999px;
+        background: rgba(204, 232, 183, 0.55);
+        border: 1px solid rgba(9, 92, 78, 0.18);
+        color: rgba(14, 34, 75, 0.88);
+        font-weight: 900;
+        font-size: 13px;
+        width: fit-content;
+      }
+      .dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 999px;
+        background: var(--primary);
+      }
+
+      h1 {
+        margin: 14px 0 10px;
+        font-size: clamp(28px, 4vw, 48px);
+        line-height: 1.05;
+        letter-spacing: -0.6px;
+        color: var(--dark);
+      }
+      .hero p {
+        margin: 0;
+        color: var(--muted);
+        max-width: 62ch;
+        font-size: 16px;
+      }
+      .highlight {
+        color: var(--primary);
+        font-weight: 900;
+      }
+      .cta-row {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      }
+      .badges {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 16px;
+      }
+      .pill {
+        display: inline-flex;
+        gap: 8px;
+        align-items: center;
+        padding: 8px 10px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid var(--border);
+        color: rgba(14, 34, 75, 0.88);
+        font-weight: 800;
+        font-size: 13px;
+      }
+
+      .mock {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .mock-card {
+        width: 100%;
+        max-width: 420px;
+        border-radius: 26px;
+        background: var(--white);
+        border: 1px solid var(--border);
+        box-shadow: 0 26px 64px rgba(14, 34, 75, 0.16);
+        overflow: hidden;
+      }
+      .mock-top {
+        padding: 14px 14px 10px;
+        background: var(--dark);
+        color: var(--white);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 10px;
+        font-weight: 900;
+      }
+      .mock-top small {
+        font-weight: 800;
+        opacity: 0.85;
+      }
+      .mock-body {
+        padding: 14px;
+      }
+      .search {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        padding: 12px 12px;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        color: var(--muted2);
+        font-weight: 700;
+      }
+      .mock-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+        margin-top: 12px;
+      }
+      .mini-card {
+        border-radius: 16px;
+        padding: 12px;
+        border: 1px solid var(--border);
+        background: rgba(204, 232, 183, 0.35);
+        min-height: 86px;
+      }
+      .mini-card strong {
+        display: block;
+        font-weight: 900;
+        color: var(--dark);
+        font-size: 13px;
+      }
+      .mini-card span {
+        display: block;
+        margin-top: 6px;
+        color: var(--muted);
+        font-size: 12.5px;
+      }
+      .mini-card.alt {
+        background: rgba(9, 92, 78, 0.08);
+      }
+
+      /* Sections */
+      section {
+        padding: 44px 0;
+      }
+      .section-title {
+        margin: 0 0 8px;
+        font-size: 26px;
+        letter-spacing: -0.3px;
+        color: var(--dark);
+        font-weight: 900;
+        text-align: center;
+      }
+      .section-sub {
+        margin: 0 auto 18px;
+        max-width: 920px;
+        color: var(--muted);
+        text-align: center;
+      }
+
+      /* Cards 4 services */
+      #services {
+        background: var(--white);
+      }
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 14px;
+        margin-top: 14px;
+      }
+      @media (max-width: 980px) {
+        .cards {
+          grid-template-columns: 1fr 1fr;
+        }
+      }
+      @media (max-width: 560px) {
+        .cards {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        border-radius: 16px;
+        padding: 18px 16px;
+        border: 2px solid var(--primary);
+        background: var(--white);
+        box-shadow: var(--shadow);
+        min-height: 160px;
+      }
+      .card.filled {
+        background: var(--primary);
+        border-color: var(--primary);
+        color: var(--white);
+      }
+      .card h3 {
+        margin: 10px 0 6px;
+        font-size: 15px;
+        font-weight: 900;
+        color: inherit;
+      }
+      .card p {
+        margin: 0;
+        font-size: 13.5px;
+        color: inherit;
+        opacity: 0.95;
+      }
+      .icon {
+        width: 46px;
+        height: 46px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(204, 232, 183, 0.6);
+        border: 1px solid rgba(9, 92, 78, 0.18);
+        font-size: 20px;
+        color: var(--dark);
+      }
+      .filled .icon {
+        background: rgba(255, 255, 255, 0.18);
+        border-color: rgba(255, 255, 255, 0.18);
+        color: var(--white);
+      }
+
+      /* How it works */
+      #how {
+        background: rgba(204, 232, 183, 0.28);
+      }
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(12, 1fr);
+        gap: 14px;
+        margin-top: 16px;
+      }
+      .step {
+        grid-column: span 6;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--white);
+        box-shadow: var(--shadow);
+        padding: 18px;
+        display: flex;
+        gap: 14px;
+        align-items: flex-start;
+      }
+      @media (max-width: 980px) {
+        .step {
+          grid-column: span 12;
+        }
+      }
+      .num {
+        width: 40px;
+        height: 40px;
+        border-radius: 14px;
+        background: rgba(9, 92, 78, 0.1);
+        border: 1px solid rgba(9, 92, 78, 0.25);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 900;
+        color: var(--primary);
+        flex: 0 0 auto;
+      }
+      .step h3 {
+        margin: 0 0 6px;
+        font-size: 15px;
+        font-weight: 900;
+        color: var(--dark);
+      }
+      .step p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 13.8px;
+      }
+
+      /* Pricing */
+      #pricing {
+        background: var(--white);
+      }
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 16px;
+        align-items: stretch;
+      }
+      @media (max-width: 980px) {
+        .pricing-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .price-card {
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--white);
+        box-shadow: var(--shadow);
+        padding: 18px;
+        position: relative;
+        overflow: hidden;
+      }
+      .price-card h3 {
+        margin: 0 0 6px;
+        font-weight: 900;
+        color: var(--dark);
+        font-size: 16px;
+      }
+      .price-card .desc {
+        margin: 0 0 12px;
+        color: var(--muted);
+        font-size: 13.8px;
+      }
+      .price {
+        display: flex;
+        align-items: baseline;
+        gap: 8px;
+        margin: 10px 0 14px;
+      }
+      .price strong {
+        font-size: 34px;
+        letter-spacing: -0.6px;
+        color: var(--dark);
+      }
+      .price span {
+        color: var(--muted);
+        font-weight: 800;
+      }
+      .list {
+        margin: 0;
+        padding-left: 18px;
+        color: var(--muted);
+        font-size: 13.8px;
+      }
+      .list li {
+        margin: 8px 0;
+      }
+      .tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        font-weight: 900;
+        font-size: 12.5px;
+        border: 1px solid var(--border);
+        background: rgba(204, 232, 183, 0.3);
+        color: rgba(14, 34, 75, 0.88);
+      }
+      .premium {
+        border: 2px solid var(--primary);
+      }
+      .premium:before {
+        content: '';
+        position: absolute;
+        inset: -60px -80px auto auto;
+        width: 240px;
+        height: 240px;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(204, 232, 183, 0.55),
+          rgba(9, 92, 78, 0.1) 55%,
+          transparent 70%
+        );
+        transform: rotate(18deg);
+        pointer-events: none;
+      }
+      .premium .tag {
+        background: rgba(9, 92, 78, 0.1);
+        border-color: rgba(9, 92, 78, 0.25);
+        color: var(--primary);
+      }
+      .cta-inline {
+        margin-top: 14px;
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
+
+      /* Trust */
+      #trust {
+        background: var(--dark);
+        color: var(--white);
+      }
+      #trust .section-title {
+        color: var(--white);
+      }
+      #trust .section-sub {
+        color: rgba(255, 255, 255, 0.82);
+      }
+
+      .trust-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 16px;
+      }
+      @media (max-width: 980px) {
+        .trust-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .trust-card {
+        border-radius: var(--radius);
+        border: 1px solid rgba(255, 255, 255, 0.16);
+        background: rgba(255, 255, 255, 0.06);
+        padding: 18px;
+      }
+      .trust-card strong {
+        display: block;
+        font-weight: 900;
+        margin-bottom: 10px;
+      }
+      .trust-card ul {
+        margin: 0;
+        padding-left: 18px;
+        color: rgba(255, 255, 255, 0.86);
+      }
+      .trust-card li {
+        margin: 8px 0;
+      }
+      .trust-note {
+        margin-top: 16px;
+        padding: 12px 14px;
+        border-radius: 16px;
+        border: 1px solid rgba(204, 232, 183, 0.28);
+        background: rgba(204, 232, 183, 0.1);
+        color: rgba(255, 255, 255, 0.88);
+        font-size: 13.5px;
+      }
+
+      /* FAQ */
+      #faq {
+        background: var(--white);
+      }
+      details {
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background: rgba(204, 232, 183, 0.25);
+        padding: 14px 14px;
+        max-width: 920px;
+        margin: 0 auto;
+      }
+      details + details {
+        margin-top: 10px;
+      }
+      summary {
+        cursor: pointer;
+        font-weight: 900;
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        color: var(--dark);
+      }
+      summary::-webkit-details-marker {
+        display: none;
+      }
+      details p {
+        color: var(--muted);
+        margin: 10px 0 0;
+      }
+
+      /* Final CTA */
+      .final {
+        padding: 44px 0 56px;
+        background: rgba(204, 232, 183, 0.28);
+      }
+      .final-card {
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--white);
+        box-shadow: var(--shadow);
+        padding: 22px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 14px;
+        flex-wrap: wrap;
+      }
+      .final-card h3 {
+        margin: 0;
+        font-weight: 900;
+        color: var(--dark);
+      }
+      .final-card p {
+        margin: 6px 0 0;
+        color: var(--muted);
+        font-size: 14px;
+        max-width: 64ch;
+      }
+
+      /* Footer */
+      footer {
+        background: var(--dark);
+        color: rgba(255, 255, 255, 0.86);
+        padding: 26px 0 40px;
+        border-top: 1px solid rgba(255, 255, 255, 0.12);
+      }
+      footer .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        align-items: center;
+      }
+      footer .links {
+        font-size: 13px;
+        opacity: 0.92;
+      }
+      footer .small {
+        margin-top: 12px;
+        font-size: 13px;
+        opacity: 0.9;
+        max-width: 90ch;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <div class="nav">
+      <div class="wrap nav-inner">
+        <div class="brand">
+          <div class="logo" aria-hidden="true">+</div>
+          <div>HUBACARE</div>
+        </div>
+
+        <nav class="nav-links" aria-label="Navigation principale">
+          <a href="#services">Services</a>
+          <a href="#how">Fonctionnement</a>
+          <a href="#pricing">Abonnement</a>
+          <a href="#trust">Confiance</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <a class="btn btn-primary" href="#cta">Commencer</a>
+      </div>
+    </div>
+
+    <!-- HERO -->
+    <header class="hero" id="top">
+      <div class="wrap hero-grid">
+        <div>
+          <div class="kicker">
+            <span class="dot"></span> Parcours de soins complet, simple et
+            rapide
+          </div>
+
+          <h1>
+            Du <span class="highlight">symptôme</span> au
+            <span class="highlight">traitement</span>, en quelques minutes.
+          </h1>
+
+          <p>
+            HUBACARE analyse vos symptômes grâce à l’IA, vous oriente vers le
+            bon professionnel si nécessaire, puis vous transfère vers la
+            <strong>pharmacie partenaire la plus proche</strong> pour une
+            livraison rapide des médicaments.
+          </p>
+
+          <div class="cta-row" id="cta">
+            <a class="btn btn-primary" href="#how">Voir comment ça marche</a>
+            <a class="btn btn-outline" href="#pricing">Découvrir Premium</a>
+          </div>
+
+          <div class="badges" aria-label="Points forts">
+            <span class="pill">🤖 Triage IA instantané</span>
+            <span class="pill">🩺 Téléconsultation si besoin</span>
+            <span class="pill">💊 Pharmacie partenaire</span>
+            <span class="pill">🚚 Livraison gratuite (Premium)</span>
+          </div>
+        </div>
+
+        <!-- Mockup simple -->
+        <div class="mock" aria-label="Aperçu de l'application">
+          <div class="mock-card">
+            <div class="mock-top">
+              <span>HUBACARE</span>
+              <small>📍 Votre ville</small>
+            </div>
+            <div class="mock-body">
+              <div class="search">🔎 Rechercher des produits de santé</div>
+
+              <div class="mock-grid">
+                <div class="mini-card">
+                  <strong>Ajoutez votre ordonnance</strong>
+                  <span>Suivi et historique.</span>
+                </div>
+                <div class="mini-card alt">
+                  <strong>Besoin d’un médecin ?</strong>
+                  <span>Téléconsultation rapide.</span>
+                </div>
+                <div class="mini-card alt">
+                  <strong>Symptômes</strong>
+                  <span>Triage IA instantané.</span>
+                </div>
+                <div class="mini-card">
+                  <strong>Pharmacie proche</strong>
+                  <span>Commande & livraison.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <!-- MISSION -->
+      <section>
+        <div class="wrap">
+          <h2 class="section-title">Notre mission</h2>
+          <p class="section-sub">
+            HUBACARE crée un écosystème de santé connecté en mettant en relation
+            <strong>patients</strong>, <strong>médecins</strong> et
+            <strong>pharmacies</strong>. Notre objectif est d’optimiser le temps
+            de prise en charge, de désengorger les cabinets médicaux et de
+            faciliter l’accès aux traitements.
+          </p>
+        </div>
+      </section>
+
+      <!-- SERVICES -->
+      <section id="services">
+        <div class="wrap">
+          <h2 class="section-title">Nos services</h2>
+          <p class="section-sub">
+            Un parcours clair : vous décrivez vos symptômes, l’IA vous guide,
+            puis vous accédez rapidement au bon traitement.
+          </p>
+
+          <div class="cards">
+            <article class="card filled">
+              <div class="icon">🤖</div>
+              <h3>Triage intelligent (IA)</h3>
+              <p>
+                L’IA analyse vos symptômes et propose une orientation adaptée.
+              </p>
+            </article>
+
+            <article class="card">
+              <div class="icon">🩺</div>
+              <h3>Orientation médicale</h3>
+              <p>
+                Si nécessaire, vous êtes redirigé vers un professionnel de
+                santé.
+              </p>
+            </article>
+
+            <article class="card filled">
+              <div class="icon">💊</div>
+              <h3>Pharmacie partenaire</h3>
+              <p>Transfert automatique vers la pharmacie la plus proche.</p>
+            </article>
+
+            <article class="card">
+              <div class="icon">🚚</div>
+              <h3>Livraison</h3>
+              <p>
+                Livraison rapide.
+                <strong>Gratuite et prioritaire avec Premium</strong>.
+              </p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- HOW IT WORKS -->
+      <section id="how">
+        <div class="wrap">
+          <h2 class="section-title">Comment ça fonctionne</h2>
+          <p class="section-sub">
+            HUBACARE simplifie le parcours médical grâce à l’intelligence
+            artificielle (IA) : triage, téléconsultation si besoin, puis
+            préparation et livraison par la pharmacie partenaire.
+          </p>
+
+          <div class="steps">
+            <div class="step">
+              <div class="num">1</div>
+              <div>
+                <h3>Triage intelligent (IA)</h3>
+                <p>
+                  L'utilisateur décrit ses symptômes. L’IA médicale effectue une
+                  analyse instantanée et oriente automatiquement vers la
+                  solution la plus adaptée.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="num">2</div>
+              <div>
+                <h3>Parcours sans ordonnance</h3>
+                <p>
+                  Si l’IA estime qu’aucune consultation n’est requise (ex : mal
+                  de tête léger), elle propose directement les médicaments
+                  adaptés et transfère la commande à la pharmacie la plus
+                  proche.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="num">3</div>
+              <div>
+                <h3>Parcours avec ordonnance</h3>
+                <p>
+                  Si l’IA détecte la nécessité d’un avis médical, le patient est
+                  redirigé vers un médecin disponible pour une téléconsultation
+                  ou un rendez-vous en présentiel.
+                </p>
+              </div>
+            </div>
+
+            <div class="step">
+              <div class="num">4</div>
+              <div>
+                <h3>Logistique et livraison</h3>
+                <p>
+                  Après la consultation, l’ordonnance est automatiquement
+                  transmise à la pharmacie partenaire la plus proche, qui
+                  prépare et livre les médicaments en quelques minutes.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRICING -->
+      <section id="pricing">
+        <div class="wrap">
+          <h2 class="section-title">Abonnement Premium</h2>
+          <p class="section-sub">
+            Livraison gratuite et prioritaire, accès rapide à la
+            téléconsultation, et services exclusifs.
+          </p>
+
+          <div class="pricing-grid">
+            <div class="price-card">
+              <span class="tag">Offre Standard</span>
+              <h3>Gratuit</h3>
+              <p class="desc">Accès aux fonctionnalités essentielles.</p>
+
+              <div class="price"><strong>0€</strong><span>/ mois</span></div>
+
+              <ul class="list">
+                <li>Triage IA et orientation</li>
+                <li>Accès aux pharmacies partenaires</li>
+                <li>Commande médicaments (selon disponibilité)</li>
+                <li>Historique simple (basique)</li>
+                <li>Livraison : frais selon conditions</li>
+              </ul>
+
+              <div class="cta-inline">
+                <a class="btn btn-outline" href="#cta">Utiliser Standard</a>
+              </div>
+            </div>
+
+            <div class="price-card premium">
+              <span class="tag">Recommandé</span>
+              <h3>Premium</h3>
+              <p class="desc">
+                Pour une prise en charge plus rapide au quotidien.
+              </p>
+
+              <div class="price"><strong>4,99€</strong><span>/ mois</span></div>
+
+              <ul class="list">
+                <li><strong>Livraison gratuite</strong></li>
+                <li><strong>Livraison prioritaire</strong></li>
+                <li><strong>Accès rapide à la téléconsultation</strong></li>
+                <li><strong>Suivi des ordonnances</strong></li>
+                <li><strong>Réductions parapharmacie</strong></li>
+                <li><strong>Historique des achats</strong></li>
+              </ul>
+
+              <div class="cta-inline">
+                <a class="btn btn-primary" href="#cta">Passer à Premium</a>
+                <a class="btn btn-outline" href="#faq">Lire la FAQ</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TRUST -->
+      <section id="trust">
+        <div class="wrap">
+          <h2 class="section-title">Confiance & sécurité</h2>
+          <p class="section-sub">
+            La santé est un sujet sérieux : HUBACARE est conçu pour informer,
+            orienter et faciliter l’accès aux soins.
+          </p>
+
+          <div class="trust-grid">
+            <div class="trust-card">
+              <strong>Ce que fait HUBACARE</strong>
+              <ul>
+                <li>
+                  Propose une première orientation à partir des symptômes
+                  déclarés.
+                </li>
+                <li>Redirige vers un professionnel de santé si nécessaire.</li>
+                <li>
+                  Facilite l’accès aux médicaments via des pharmacies
+                  partenaires.
+                </li>
+              </ul>
+            </div>
+
+            <div class="trust-card">
+              <strong>Ce que HUBACARE ne remplace pas</strong>
+              <ul>
+                <li>
+                  En cas d’urgence vitale, contactez immédiatement les services
+                  d’urgence.
+                </li>
+                <li>
+                  L’application ne remplace pas une consultation médicale
+                  lorsque c’est nécessaire.
+                </li>
+                <li>Elle n’encourage pas l’automédication risquée.</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="trust-note">
+            ⚠️ En cas de douleur intense, difficulté à respirer, malaise,
+            saignement important ou tout signe grave, appelez les urgences.
+          </div>
+        </div>
+      </section>
+
+      <!-- ✅ FAQ HUBACARE – VERSION COMPLÈTE (ajoutée) -->
+      <section id="faq">
+        <div class="wrap">
+          <h2 class="section-title">FAQ</h2>
+          <p class="section-sub">
+            Toutes les réponses à vos questions avant de commencer.
+          </p>
+
+          <details>
+            <summary>
+              🤖 L’IA remplace-t-elle un médecin ? <span>+</span>
+            </summary>
+            <p>
+              Non. L’IA HUBACARE propose une
+              <strong>première orientation</strong> basée sur vos symptômes. Si
+              des signes nécessitent un avis médical, vous êtes automatiquement
+              redirigé vers un <strong>médecin généraliste</strong> ou un
+              <strong>spécialiste</strong>.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              🧠 Comment fonctionne le triage intelligent ? <span>+</span>
+            </summary>
+            <p>
+              Vous décrivez vos symptômes. L’IA analyse vos réponses en quelques
+              secondes et vous indique la solution la plus adaptée : accès
+              direct à la pharmacie, téléconsultation, rendez-vous en présentiel
+              ou urgence si nécessaire.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              🤖 L’IA suffit-elle toujours ? (cas simples) <span>+</span>
+            </summary>
+            <p>
+              Pour les cas bénins (rhume, toux légère, migraine légère,
+              irritation…), l’IA suffit pour vous proposer des traitements en
+              vente libre.
+              <br /><br />
+              ✔️ Si l’IA a un doute, un
+              <strong>médecin étudiant</strong> vérifie l’orientation.<br />
+              ✔️ Il ne prescrit pas d’ordonnance.<br />
+              ✔️ Il confirme simplement que l’orientation est sûre.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              💊 Puis-je obtenir des médicaments sans ordonnance ?
+              <span>+</span>
+            </summary>
+            <p>
+              Oui, si vos symptômes sont compatibles avec des médicaments
+              disponibles <strong>sans ordonnance</strong>
+              (migraine légère, rhume, irritations…). HUBACARE propose ces
+              traitements directement.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              🩺 Que se passe-t-il si j’ai besoin d’un médecin ? <span>+</span>
+            </summary>
+            <p>
+              HUBACARE vous redirige vers un
+              <strong>médecin généraliste</strong> ou un
+              <strong>spécialiste</strong>, en fonction de vos symptômes. Vous
+              pouvez choisir : <br /><br />
+              • téléconsultation,<br />
+              • ou rendez-vous en présentiel.<br /><br />
+              Après consultation, l’ordonnance est automatiquement envoyée à la
+              pharmacie partenaire la plus proche.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              🏥 HUBACARE remplace-t-il les urgences ? <span>+</span>
+            </summary>
+            <p>
+              Non. En cas de : douleur intense, malaise, saignement important,
+              difficulté à respirer, traumatisme grave ou tout signe vital
+              inquiétant…
+              <br /><br />
+              ➡️ Appelez immédiatement le <strong>15</strong> ou le
+              <strong>112</strong>.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              💊 Que se passe-t-il si ma pharmacie est fermée ? <span>+</span>
+            </summary>
+            <p>
+              Si la pharmacie sélectionnée est fermée, indisponible ou
+              surchargée, HUBACARE bascule automatiquement vers la
+              <strong>pharmacie ouverte la plus proche</strong> selon votre
+              localisation. Tout est automatisé.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              🚚 Comment fonctionne la livraison ? <span>+</span>
+            </summary>
+            <p>
+              Après validation de votre commande :
+              <br /><br />
+              ✔️ la pharmacie la plus proche prépare vos médicaments,<br />
+              ✔️ un livreur vous les apporte en quelques minutes (zones
+              couvertes),<br />
+              ✔️ la livraison est <strong>gratuite pour les abonnés</strong>.
+            </p>
+          </details>
+
+          <details>
+            <summary>📦 Puis-je suivre ma commande ? <span>+</span></summary>
+            <p>
+              Oui. Vous recevez :
+              <br /><br />
+              • une confirmation de prise en charge,<br />
+              • des mises à jour en temps réel,<br />
+              • et un suivi du livreur si la livraison est disponible dans votre
+              zone.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              📍 HUBACARE fonctionne-t-il partout ? <span>+</span>
+            </summary>
+            <p>
+              HUBACARE dépend de vos pharmacies partenaires locales.
+              L’application détecte automatiquement :
+              <br /><br />
+              • votre zone,<br />
+              • les pharmacies ouvertes,<br />
+              • et la disponibilité de la livraison express.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              📄 Comment envoyer une ordonnance ? <span>+</span>
+            </summary>
+            <p>
+              Vous pouvez téléverser votre ordonnance, prendre une photo ou
+              recevoir une ordonnance digitale après téléconsultation. Elle est
+              automatiquement envoyée à la pharmacie partenaire.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              🧘 Dans quels cas l’IA suffit-elle ? <span>+</span>
+            </summary>
+            <p>
+              L’IA prend efficacement en charge :
+              <br /><br />
+              • rhume, toux,<br />
+              • maux de tête légers,<br />
+              • douleurs musculaires simples,<br />
+              • irritations, allergies légères,<br />
+              • troubles digestifs légers,<br />
+              • petites infections ORL.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              🔐 Mes données médicales sont-elles protégées ? <span>+</span>
+            </summary>
+            <p>
+              Oui. Données chiffrées, serveurs sécurisés, RGPD, accès limité aux
+              professionnels concernés. Vos données ne sont
+              <strong>jamais revendues</strong>.
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              👤 Comment créer un compte HUBACARE ? <span>+</span>
+            </summary>
+            <p>
+              La création de compte se fait en quelques secondes :
+              <br /><br />
+              1. Entrer votre numéro de téléphone ou e-mail,<br />
+              2. Valider le code de vérification,<br />
+              3. Compléter vos informations médicales optionnelles (allergies,
+              traitements).<br /><br />
+              Votre compte est prêt !
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              💳 Comment fonctionne l’abonnement ? <span>+</span>
+            </summary>
+            <p>
+              Un abonnement permet de :
+              <br /><br />
+              ✔️ bénéficier de la livraison gratuite,<br />
+              ✔️ accéder à un triage IA illimité,<br />
+              ✔️ accélérer le transfert vers la pharmacie.<br />
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              👨‍👩‍👧 L’abonnement famille existe-t-il ? <span>+</span>
+            </summary>
+            <p>
+              Oui. L’<strong>Abonnement Famille (10,90 €/mois)</strong> permet :
+              <br /><br />
+              • livraison gratuite pour tous les membres,<br />
+              • triage IA illimité,<br />
+              • dossiers médicaux séparés,<br />
+              • partage simplifié des ordonnances.
+            </p>
+          </details>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="final">
+        <div class="wrap">
+          <div class="final-card">
+            <div>
+              <h3>Commencez maintenant</h3>
+              <p>
+                Décrivez vos symptômes, recevez une orientation claire, puis
+                accédez rapidement à la pharmacie partenaire la plus proche.
+              </p>
+            </div>
+            <div style="display: flex; gap: 10px; flex-wrap: wrap">
+              <a class="btn btn-primary" href="#how">Démarrer</a>
+              <a class="btn btn-outline" href="#pricing">Premium 4,99€</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+      <div class="wrap">
+        <div class="row">
+          <div class="brand">
+            <div class="logo" aria-hidden="true">+</div>
+            <div>HUBACARE</div>
+          </div>
+          <div class="links">
+            Mentions légales • Politique de confidentialité • CGU
+          </div>
+        </div>
+        <div class="small">
+          ⚠️ HUBACARE fournit une information d’orientation et ne remplace pas
+          un avis médical. En cas d’urgence, contactez les services d’urgence.
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<!-- SECTION TÉLÉCHARGEMENT APP -->
+<section
+  id="download"
+  aria-labelledby="download-title"
+  style="background: var(--white); padding: 44px 0"
+>
+  <div class="wrap">
+    <h2 class="section-title" id="download-title">Télécharger l’app</h2>
+    <p class="section-sub">Disponible sur iOS, Android et en Web-App (PWA).</p>
+
+    <div
+      class="store-badges"
+      style="
+        display: flex;
+        gap: 10px;
+        justify-content: center;
+        flex-wrap: wrap;
+        margin-top: 18px;
+      "
+    >
+      <a
+        class="store-btn"
+        href="#"
+        style="
+          display: inline-flex;
+          padding: 12px 16px;
+          border-radius: 14px;
+          border: 1px solid var(--border);
+          box-shadow: var(--shadow);
+          font-weight: 900;
+        "
+      >
+        🍎 App Store
+      </a>
+      <a
+        class="store-btn"
+        href="#"
+        style="
+          display: inline-flex;
+          padding: 12px 16px;
+          border-radius: 14px;
+          border: 1px solid var(--border);
+          box-shadow: var(--shadow);
+          font-weight: 900;
+        "
+      >
+        🤖 Google Play
+      </a>
+      <a
+        class="store-btn"
+        href="#"
+        style="
+          display: inline-flex;
+          padding: 12px 16px;
+          border-radius: 14px;
+          border: 1px solid var(--border);
+          box-shadow: var(--shadow);
+          font-weight: 900;
+        "
+      >
+        ⚡ Installer la Web‑App
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- BANDEAU COOKIES RGPD -->
+<div
+  class="cookie-banner"
+  id="cookieBanner"
+  role="dialog"
+  aria-live="polite"
+  style="
+    position: fixed;
+    bottom: 12px;
+    left: 12px;
+    right: 12px;
+    background: #fff;
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+    max-width: 820px;
+    margin: 0 auto;
+    display: none;
+    z-index: 200;
+  "
+>
+  <strong style="font-size: 16px; color: var(--dark)"
+    >Cookies & confidentialité</strong
+  >
+  <p style="color: var(--muted); margin-top: 6px">
+    Nous utilisons des cookies pour améliorer votre expérience, sécuriser le
+    service et mesurer notre audience.
+  </p>
+
+  <div
+    class="cookie-actions"
+    style="display: flex; gap: 10px; flex-wrap: wrap; margin-top: 12px"
+  >
+    <button id="cookieDecline" class="btn btn-outline">Refuser</button>
+    <button id="cookieAccept" class="btn btn-primary">Accepter</button>
+    <a href="/politique-confidentialite.html#cookies" class="btn btn-outline"
+      >Personnaliser</a
+    >
+  </div>
+</div>
+
+<script>
+  const COOKIE_KEY = 'hubacare_cookie_v1';
+  const cookieBanner = document.getElementById('cookieBanner');
+  const savedChoice = localStorage.getItem(COOKIE_KEY);
+
+  if (!savedChoice) {
+    cookieBanner.style.display = 'block';
+  }
+
+  document.getElementById('cookieAccept')?.addEventListener('click', () => {
+    localStorage.setItem(COOKIE_KEY, 'accepted');
+    cookieBanner.style.display = 'none';
+  });
+
+  document.getElementById('cookieDecline')?.addEventListener('click', () => {
+    localStorage.setItem(COOKIE_KEY, 'declined');
+    cookieBanner.style.display = 'none';
+  });
+</script>
+
+<!-- SECTION CONTACT -->
+<section
+  id="contact"
+  aria-labelledby="contact-title"
+  style="padding: 44px 0; background: var(--white)"
+>
+  <div class="wrap">
+    <h2 class="section-title" id="contact-title">Support & Contact</h2>
+    <p class="section-sub">
+      Une question ? Notre équipe vous répond généralement sous 24 h.
+    </p>
+
+    <form
+      class="contact-card"
+      style="
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 22px;
+        background: #fff;
+        max-width: 820px;
+        margin: 0 auto;
+        box-shadow: var(--shadow);
+      "
+    >
+      <div
+        class="form-row"
+        style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px"
+      >
+        <div
+          class="field"
+          style="display: flex; flex-direction: column; gap: 6px"
+        >
+          <label for="c-name" style="font-weight: 900">Nom</label>
+          <input
+            id="c-name"
+            name="name"
+            type="text"
+            placeholder="Votre nom"
+            required
+            style="
+              padding: 12px;
+              border: 1px solid var(--border);
+              border-radius: 12px;
+            "
+          />
+        </div>
+
+        <div
+          class="field"
+          style="display: flex; flex-direction: column; gap: 6px"
+        >
+          <label for="c-email" style="font-weight: 900">E-mail</label>
+          <input
+            id="c-email"
+            name="email"
+            type="email"
+            placeholder="votremail@exemple.com"
+            required
+            style="
+              padding: 12px;
+              border: 1px solid var(--border);
+              border-radius: 12px;
+            "
+          />
+        </div>
+      </div>
+
+      <div
+        class="form-row"
+        style="
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 12px;
+          margin-top: 12px;
+        "
+      >
+        <div class="field">
+          <label for="c-topic" style="font-weight: 900">Sujet</label>
+          <select
+            id="c-topic"
+            name="topic"
+            required
+            style="
+              padding: 12px;
+              border: 1px solid var(--border);
+              border-radius: 12px;
+            "
+          >
+            <option value="">Choisir...</option>
+            <option>Compte & Abonnement</option>
+            <option>Commande & Livraison</option>
+            <option>Ordonnance</option>
+            <option>Technique</option>
+            <option>Autre</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="c-phone" style="font-weight: 900"
+            >Téléphone (optionnel)</label
+          >
+          <input
+            id="c-phone"
+            type="tel"
+            placeholder="+33 6 12 34 56 78"
+            style="
+              padding: 12px;
+              border: 1px solid var(--border);
+              border-radius: 12px;
+            "
+          />
+        </div>
+      </div>
+
+      <div
+        class="field"
+        style="
+          margin-top: 12px;
+          display: flex;
+          flex-direction: column;
+          gap: 6px;
+        "
+      >
+        <label for="c-msg" style="font-weight: 900">Message</label>
+        <textarea
+          id="c-msg"
+          name="message"
+          placeholder="Expliquez votre demande..."
+          required
+          style="
+            padding: 12px;
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            min-height: 120px;
+          "
+        ></textarea>
+      </div>
+
+      <p style="color: var(--muted); font-size: 13px; margin-top: 8px">
+        En envoyant ce message, vous acceptez d’être recontacté(e) par l’équipe
+        HUBACARE.
+      </p>
+
+      <div
+        class="cta-row"
+        style="margin-top: 14px; display: flex; gap: 10px; flex-wrap: wrap"
+      >
+        <button class="btn btn-primary" type="submit">Envoyer</button>
+        <a href="mailto:support@hubacare.com" class="btn btn-outline"
+          >Écrire un e-mail</a
+        >
+      </div>
+    </form>
+  </div>
+</section>

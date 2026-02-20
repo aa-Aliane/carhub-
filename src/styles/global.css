@@ -1,12 +1,12 @@
 /* --- CONFIGURATION SYSTÈME INTÉGRAL --- */
 :root {
   /* 1. BRAND TOKENS (Valeurs fixes) */
-  --brand-green: hsl(153, 64%, 23%);
-  --brand-green-dark: hwb(162 4% 76%);
+  --brand-green: hsl(220, 69%, 17%);
+  --brand-green-dark: hsl(220, 69%, 10%);
   --brand-green-soft: hsl(153, 62%, 30%);
-  --brand-green-light: hsl(153, 50%, 55%);
+  --brand-green-light: #33bc89;
   --brand-green-lighter: hsl(153, 40%, 70%);
-  --brand-gold: hsl(51, 100%, 50%);
+  --brand-gold: #33bc89;
   --color-white: hsl(0, 0%, 100%);
   --color-grey-soft: hsl(0, 0%, 95%);
   --color-grey-dark: hsl(0, 0%, 40%);
@@ -49,21 +49,25 @@
 
 /* Cette partie permet au bouton de forcer le mode sombre même si l'ordi est en mode clair */
 .dark {
-  /* On restaure le vert vibrant pour le texte dans le dark mode */
-  --brand-green-light: hsl(153, 50%, 55%); 
+  /* On garde un vert vibrant pour les accents */
+  --brand-green-light: hsl(153, 60%, 70%);
 
-  --color-bg: hsl(213, 14%, 10%);
-  --color-bg-nav: hsla(213, 14%, 12%, 0.8);
-  --color-bg-subtle: hsl(213, 14%, 14%);
-  --color-primary: var(--brand-green-light);
-  --color-primary-soft: hsl(153, 50%, 45%);
-  --color-primary-dark: var(--brand-green-light);
-  --color-primary-bg: hsl(153, 62%, 28%); /* Nuance plus sombre pour les fonds supportant du texte blanc */
-  --color-neutral: hsl(213, 14%, 16%);
+  /* Backgrounds: Un bleu marine très sombre, dérivé de la marque */
+  --color-bg: hsl(220, 30%, 8%);
+  --color-bg-nav: hsla(220, 30%, 10%, 0.8);
+  --color-bg-subtle: hsl(220, 25%, 12%);
+
+  /* Primary: On utilise un bleu plus électrique/clair pour rester dans la marque mais lisible */
+  --color-primary: hsl(213, 90%, 65%);
+  --color-primary-soft: hsl(213, 70%, 50%);
+  --color-primary-dark: hsl(213, 90%, 75%);
+  --color-primary-bg: var(--brand-green); /* Le bleu marine d'origine */
+
+  --color-neutral: hsl(220, 20%, 15%);
   --color-text: hsl(0, 0%, 98%);
-  --color-text-muted: hsl(213, 10%, 70%);
-  --color-border: hsl(213, 14%, 20%);
-  --color-shadow: rgba(0, 0, 0, 0.4);
+  --color-text-muted: hsl(220, 15%, 75%);
+  --color-border: hsl(220, 25%, 18%);
+  --color-shadow: rgba(0, 0, 0, 0.6);
 }
 
 /* --- ADAPTATION DESKTOP --- */
@@ -99,6 +103,10 @@ body {
   transition:
     background-color 0.3s ease,
     color 0.3s ease;
+}
+
+body.menu-open {
+  overflow: hidden;
 }
 
 h1 {
