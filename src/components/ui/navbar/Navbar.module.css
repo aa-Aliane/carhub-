@@ -143,6 +143,22 @@
   background: var(--color-bg-subtle);
 }
 
+.githubLink {
+  color: var(--color-text);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.3s ease, color 0.3s ease;
+  text-decoration: none;
+}
+
+.githubLink:hover {
+  background: var(--color-bg-subtle);
+  color: var(--color-primary);
+}
+
 /* Cache l'icône opposée selon le mode */
 .sun {
   display: block;
