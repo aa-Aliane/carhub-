@@ -25,12 +25,13 @@
   font-weight: 800;
   margin-bottom: 1.5rem;
   color: var(--color-white);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
-.logo span {
-  color: var(
-    --color-secondary
-  ); /* Utilisation de l'or pour la lisibilité sur fond sombre */
+.plus {
+  color: var(--color-secondary);
 }
 
 .tagline {
@@ -94,6 +95,20 @@
 
 .mockBadge:hover {
   background: rgba(255, 255, 255, 0.2);
+}
+
+/* --- DISCLAIMER --- */
+.disclaimer {
+  margin-top: 3rem;
+  padding: 1rem 0;
+  text-align: center;
+  font-size: 0.8rem;
+  color: rgba(255, 255, 255, 0.45);
+  line-height: 1.6;
+  font-weight: 300;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* --- BOTTOM BAR --- */

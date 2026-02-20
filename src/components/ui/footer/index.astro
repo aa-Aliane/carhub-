@@ -6,7 +6,7 @@ import styles from './Footer.module.css';
   <div class={styles.container}>
     <div class={styles.grid}>
       <div class={styles.brandCol}>
-        <div class={styles.logo}>Care<span>Hub</span></div>
+        <div class={styles.logo}><span class={styles.plus}>+</span> CareHub</div>
         <p class={styles.tagline}>
           L'IA certifiée qui révolutionne votre accès aux soins. Disponible
           24h/7j partout en France.
@@ -28,18 +28,23 @@ import styles from './Footer.module.css';
           <li><a href="#features">Services</a></li>
           <li><a href="#reviews">Témoignages</a></li>
           <li><a href="#pricing">Tarifs</a></li>
+          <li><a href="#faq">FAQ</a></li>
         </ul>
       </div>
 
       <div class={styles.linkCol}>
-        <h4>Support</h4>
+        <h4>Légal</h4>
         <ul>
-          <li><a href="#">Centre d'aide</a></li>
-          <li><a href="#">Confidentialité (RGPD)</a></li>
-          <li><a href="#">Mentions Légales</a></li>
+          <li><a href="#">Mentions légales</a></li>
+          <li><a href="#">Politique de confidentialité</a></li>
+          <li><a href="#">CGU</a></li>
           <li><a href="#">Contact</a></li>
         </ul>
       </div>
+    </div>
+
+    <div class={styles.disclaimer}>
+      <p>CareHub fournit une information d’orientation et ne remplace pas un avis médical. En cas d’urgence, contactez les services d’urgence.</p>
     </div>
 
     <div class={styles.bottomBar}>
