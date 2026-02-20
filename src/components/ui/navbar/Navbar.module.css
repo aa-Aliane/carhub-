@@ -17,6 +17,19 @@
   transition: var(--transition);
 }
 
+:global(.scrolled).navbar {
+  top: 0; /* Colle au plafond */
+  width: 100%; /* Prend toute la largeur */
+  max-width: 100%; /* Annule les limites */
+  border-radius: 0; /* Devient carré */
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  padding: 1rem 5%; /* On ajuste le padding pour l'alignement */
+  background: var(--color-bg-nav); /* Ou une version plus opaque si tu veux */
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+}
+
 .logo {
   font-weight: 700;
   font-size: 1.3rem;
@@ -50,13 +63,13 @@
 }
 
 /* DATASET ACTIVE STATE */
-.links a[data-active="true"] {
+.links a[data-active='true'] {
   color: var(--color-primary);
   font-weight: 700;
 }
 
-.links a[data-active="true"]::after {
-  content: "";
+.links a[data-active='true']::after {
+  content: '';
   position: absolute;
   bottom: 0;
   left: 0;

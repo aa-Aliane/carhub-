@@ -46,4 +46,14 @@ import styles from './Navbar.module.css';
   }, observerOptions);
 
   sections.forEach((section) => observer.observe(section));
+
+  const navbar = document.querySelector('nav'); // Cible ta navbar
+
+  window.addEventListener('scroll', () => {
+    if (navbar && window.scrollY > 50) {
+      navbar.classList.add('scrolled');
+    } else if (navbar) {
+      navbar.classList.remove('scrolled');
+    }
+  });
 </script>
