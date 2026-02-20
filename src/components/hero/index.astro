@@ -1,9 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import styles from './Hero.module.css';
-import picture1 from '../../assets/6.png';
 import picture2 from '../../assets/7.png';
-import picture4 from '../../assets/4.png';
 ---
 
 <section class={styles.hero} id="hero">
@@ -16,44 +14,28 @@ import picture4 from '../../assets/4.png';
             Votre santé immédiate, soins et pharmacie en ligne.
           </h1>
           <p class={styles.description}>
-            HUBACARE analyse vos symptômes grâce à l’IA, vous oriente vers le
+            CareHub analyse vos symptômes grâce à l’IA, vous oriente vers le
             bon professionnel si nécessaire, puis vous transfère vers la
             pharmacie partenaire la plus proche pour une livraison rapide des
             médicaments.
           </p>
         </div>
 
-        <div class={styles.images}>
-          <Image
-            src={picture1}
-            alt="Interface de l'application CareHub"
-            format="webp"
-            width={300}
-            height={600}
-            quality="high"
-            class={styles.heroImg}
-          />
-
-          <div class={styles.infoSection}>
-            <div class={styles.stats}>
-              <div class={styles.statItem}>
-                <span class={styles.statValue}>100%</span>
-                <span class={styles.statLabel}>Privé & Sécurisé</span>
-              </div>
-              <div class={styles.statItem}>
-                <span class={styles.statValue}>+500</span>
-                <span class={styles.statLabel}>Pharmacies</span>
-              </div>
-            </div>
-            <Image
-              src={picture4}
-              alt="Interface de l'application CareHub"
-              format="webp"
-              width={300}
-              height={600}
-              quality="high"
-              class={styles.infoImg}
-            />
+        <div class={styles.statsContainer}>
+          <div class={styles.statCard}>
+            <span class={styles.statValue}>100%</span>
+            <span class={styles.statLabel}>Privé & Sécurisé</span>
+            <p class={styles.statDetail}>Conformité RGPD & Chiffrement de bout en bout.</p>
+          </div>
+          <div class={styles.statCard}>
+            <span class={styles.statValue}>+500</span>
+            <span class={styles.statLabel}>Pharmacies</span>
+            <p class={styles.statDetail}>Un réseau national pour une livraison en 1h.</p>
+          </div>
+          <div class={styles.statCard}>
+            <span class={styles.statValue}>24/7</span>
+            <span class={styles.statLabel}>Disponibilité</span>
+            <p class={styles.statDetail}>Une assistance médicale à tout moment.</p>
           </div>
         </div>
       </div>
@@ -66,7 +48,7 @@ import picture4 from '../../assets/4.png';
           width={300}
           height={600}
           quality="high"
-          class={styles.heroImg}
+          class={styles.heroImgSmall}
         />
 
         <div class={styles.contentBox}>
